@@ -4,7 +4,7 @@ const User = require('../models/user');
 const express = require('express');
 const router = new express.Router();
 const ExpressError = require('../helpers/expressError');
-const { authUser, requireLogin, requireAdmin } = require('../middleware/auth');
+const { authUser, requireLogin, requireAdmin, requireAdminOrUser } = require('../middleware/auth');
 
 /** GET /
  *
@@ -63,7 +63,7 @@ router.get('/:username', authUser, requireLogin, async function(
  *
  */
 
-router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
+router.patch('/:username', authUser, requireAdminOrUser, async function(
   req,
   res,
   next

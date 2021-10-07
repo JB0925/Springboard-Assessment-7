@@ -19,11 +19,11 @@ function sqlForPartialUpdate(table, items, key, id) {
   let columns = [];
 
   // filter out keys that start with "_" -- we don't want these in DB
-  for (let key in items) {
-    if (key.startsWith("_")) {
-      delete items[key]
-    }
-  }
+  for (let colName in items) {
+    if (colName.startsWith("_")) {
+      delete items[colName];
+    };
+  };
 
   for (let column in items) {
     columns.push(`${column}=$${idx}`);

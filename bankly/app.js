@@ -35,4 +35,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-module.exports = app;
+// FIX BUG #4 - module.exports line was added twice

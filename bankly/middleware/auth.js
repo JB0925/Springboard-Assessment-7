@@ -17,6 +17,21 @@ function requireLogin(req, res, next) {
   }
 }
 
+/** Authorization Middleware: Requires user is logged in and is staff OR current user. */
+
+function requireAdminOrUser(req, res, next) {
+  try {
+    if (req.curr_admin || req.curr_username === req.params.username) {
+      return next();
+    } else {
+      return next({ status: 401, message: 'Unauthorized' });
+    }
+  } catch (err) {
+    return next(err);
+  }
+}
+
+// FIXES BUG #2
 /** Authorization Middleware: Requires user is logged in and is staff. */
 
 function requireAdmin(req, res, next) {
@@ -52,6 +67,7 @@ function authUser(req, res, next) {
       req.curr_username = payload.username;
       req.curr_admin = payload.admin;
     }
+    console.log(req)
     return next();
   } catch (err) {
     err.status = 401;
@@ -61,6 +77,7 @@ function authUser(req, res, next) {
 
 module.exports = {
   requireLogin,
+  requireAdminOrUser,
   requireAdmin,
   authUser
 };
