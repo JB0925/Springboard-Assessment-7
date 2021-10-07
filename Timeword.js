@@ -29,6 +29,9 @@ const timeToWords = inputTime => {
     return parseInt(inputHour) < 12 ? `${timeIntoWords} AM` : `${timeIntoWords} PM`;
 };
 
-console.log(timeToWords("45:00"));
+module.exports = {
+    checkForErrors,
+    timeToWords
+};
 
 
