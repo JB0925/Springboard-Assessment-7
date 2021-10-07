@@ -67,7 +67,6 @@ function authUser(req, res, next) {
       req.curr_username = payload.username;
       req.curr_admin = payload.admin;
     }
-    console.log(req)
     return next();
   } catch (err) {
     err.status = 401;

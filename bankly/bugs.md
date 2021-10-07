@@ -12,3 +12,5 @@
 4). app.js - module.exports line was added twice.
 
 5). auth.js (routes) - line 45 was a Promise that needed to be awaited (added the keyword "await")
+
+6). 5). users.js (routes) - line 103 needed to be awaited (added the keyword "await")
