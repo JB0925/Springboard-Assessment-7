@@ -1,6 +1,16 @@
 const { hours, minutes } = require("./TimewordSetup");
 
+const checkForErrors = (timeString, hoursLookup, minutesLookup) => {
+    if (typeof timeString !== 'string') throw new Error("The input time must be a string.");
+
+    const splitTime = timeString.split(":");
+
+    if (!hoursLookup[splitTime[0]] || !minutesLookup[splitTime[1]]) 
+    throw new Error("Time string does not represent a real time.");
+};
+
 const timeToWords = inputTime => {
+    checkForErrors(inputTime, hours, minutes);
     inputTime = inputTime.split(':');
     const inputHour = inputTime[0];
     const inputMinute = inputTime[1];
@@ -19,6 +29,6 @@ const timeToWords = inputTime => {
     return parseInt(inputHour) < 12 ? `${timeIntoWords} AM` : `${timeIntoWords} PM`;
 };
 
-console.log(timeToWords('23:23'));
+console.log(timeToWords("45:00"));
 
 
